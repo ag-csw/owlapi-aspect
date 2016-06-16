@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1464608342448" name="http://csw.inf.fu-berlin.de/aood/example" uri="aspect_example.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1464608342448" name="http://www.corporate-semantic-web.de/ontologies/aspect_owl" uri="aspectOWL.owl"/>
+    </group>
+</catalog>
