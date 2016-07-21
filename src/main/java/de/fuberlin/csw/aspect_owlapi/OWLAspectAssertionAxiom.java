@@ -21,11 +21,14 @@ public class OWLAspectAssertionAxiom extends OWLAnnotationAssertionAxiomImpl  {
 
     OWLAspectAssertionAxiom(@Nonnull JoinPoint joinPoint, @Nonnull Advice advice,
                             @Nonnull Collection< ?extends OWLAnnotation> annotations){
-        super(joinPoint.get(), HasAspect.getInstance(), advice.get().getIRI(), annotations);
+        super(joinPoint.get(), HasAspect.getInstance(), advice.get(), annotations);
     }
 
     OWLAspectAssertionAxiom(OWLAnnotationAssertionAxiom axiomRepresentation){
+
+        // TODO  ASSERT Annotation value
         super(axiomRepresentation.getSubject(), axiomRepresentation.getProperty(), axiomRepresentation.getValue(), axiomRepresentation.getAnnotations());
+
         if(!axiomRepresentation.getProperty().equals(HasAspect.getInstance())){
             throw new NotAnAspectAnnotationError();
         }
@@ -35,6 +38,10 @@ public class OWLAspectAssertionAxiom extends OWLAnnotationAssertionAxiomImpl  {
         return new JoinPoint(this.getSubject());
     }
 
+
+    public Advice getAdvice(){
+        return new Advice(axiomRepresentation.getValue().asIRI().get());
+    }
 
 
 

@@ -1,8 +1,6 @@
 package de.fuberlin.csw.aspect_owlapi;
 
-import org.semanticweb.owlapi.model.OWLAnnotation;
-import org.semanticweb.owlapi.model.OWLAnnotationProperty;
-import org.semanticweb.owlapi.model.OWLAnnotationValue;
+import org.semanticweb.owlapi.model.*;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataFactoryImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataFactoryInternals;
 
@@ -25,19 +23,19 @@ public class OWLDataFactoryAspectImpl extends OWLDataFactoryImpl implements OWLD
     }
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(JoinPoint joinPoint, Advice advice){
-        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(HasAspect.getInstance(), joinPoint.get(), advice.get().getIRI()))  ;
+        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(HasAspect.getInstance(), joinPoint.get(), advice.get()))  ;
     }
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(JoinPoint joinPoint, Advice advice, java.util.Set<? extends OWLAnnotation> annotations){
-        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(HasAspect.getInstance(), joinPoint.get(), advice.get().getIRI(), annotations))  ;
+        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(HasAspect.getInstance(), joinPoint.get(), advice.get(), annotations))  ;
     }
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(JoinPoint joinPoint, Aspect aspect){
-        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(joinPoint.get(), aspect.getAnnotation()))  ;
+        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(joinPoint.get(), aspect))  ;
     }
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(JoinPoint joinPoint, Aspect aspect, java.util.Set<? extends OWLAnnotation> annotations){
-        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(joinPoint.get(), aspect.getAnnotation(), annotations))  ;
+        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(joinPoint.get(), aspect, annotations))  ;
     }
 
     public Aspect getAspect(Advice advice){
@@ -46,6 +44,14 @@ public class OWLDataFactoryAspectImpl extends OWLDataFactoryImpl implements OWLD
 
     public Aspect getAspect(Advice advice, java.util.Set<? extends OWLAnnotation> annotations){
         return new Aspect(advice, annotations);
+    }
+
+    public Advice getAdvice(OWLClass adviceClass){
+        return new Advice(adviceClass.getIRI());
+    }
+
+    public JoinPoint getJoinPoint(OWLAnnotationSubject subject){
+        return new JoinPoint(subject);
     }
 
 

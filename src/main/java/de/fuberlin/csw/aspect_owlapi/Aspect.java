@@ -12,11 +12,10 @@ import java.util.Set;
  */
 public class Aspect extends OWLAnnotationImpl {
 
-    private OWLAnnotation annotation;
 
 
     public Aspect(@Nonnull Advice advice, @Nonnull Set<? extends OWLAnnotation> annotations){
-        super(HasAspect.getInstance(), advice.get().getIRI(),  annotations);
+        super(HasAspect.getInstance(), advice.get(),  annotations);
     }
 
     public Aspect(OWLAnnotation annotation){
@@ -26,11 +25,10 @@ public class Aspect extends OWLAnnotationImpl {
         }
     }
 
-    public OWLAnnotation getAnnotation(){
-        return this;
+
+    public Advice getAdvice(){
+        return new Advice(this.getValue().asIRI().get());       //   Advice created via constructor - stopgap
     }
-
-
 
 
 }

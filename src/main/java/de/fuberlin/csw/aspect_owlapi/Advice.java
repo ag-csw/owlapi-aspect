@@ -1,20 +1,25 @@
 package de.fuberlin.csw.aspect_owlapi;
 
 import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.IRI;
+
 
 /**
  * Created by lars on 02.05.16.
  */
 public class Advice {
 
-    private OWLClass addviceClass;
+    private IRI addviceClassIRI;
 
-    public Advice(OWLClass addviceClass){
-        this.addviceClass = addviceClass;
+
+    // should only be used via Data Factory
+    public Advice(IRI adviceClassIRI){
+        this.addviceClassIRI = adviceClassIRI;
     }
 
-    public OWLClass get(){
-        return this.addviceClass;
+
+    public IRI get(){
+        return this.addviceClassIRI;
     }
 
 }

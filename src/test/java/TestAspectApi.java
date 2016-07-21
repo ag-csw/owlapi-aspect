@@ -50,21 +50,17 @@ public class TestAspectApi {
 
 
         OWLOntologyManagerAspect ontologyManagerAspect = OWLManagerAspect.createOWLOntologyManager();
-        //OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
 
 
-        //OWLDataFactoryAspect dataFactoryAspect = ontologyManagerAspect.getOWLDataFactory();
+        OWLDataFactoryAspect dataFactoryAspect = ontologyManagerAspect.getOWLDataFactory();
 
 
 
+        ontologyManagerAspect.getIRIMappers().add(new SimpleIRIMapper(ASPECT_EXAMPLE_ONTO_IRI, IRI.create(ASPECT_EXAMPLE_ONTO_FILE)));
         ontologyManagerAspect.getIRIMappers().add(new SimpleIRIMapper(ADVISED_ASPECT_ONTO_IRI, IRI.create(ADVISED_ASPECT_ONTO_FILE)));
-        //ontologyManager.getIRIMappers().add(new SimpleIRIMapper(ADVISED_ASPECT_ONTO_IRI, IRI.create(ADVISED_ASPECT_ONTO_FILE)));
+
 
         System.out.println(ontologyManagerAspect.getIRIMappers().size());
-        //System.out.println(ontologyManager.getIRIMappers().size());
-
-        System.out.println(ontologyManagerAspect.contains(ADVISED_ASPECT_ONTO_IRI));
-        //System.out.println(ontologyManager.contains(ADVISED_ASPECT_ONTO_IRI));
 
 
 
@@ -73,22 +69,19 @@ public class TestAspectApi {
 
             //System.out.println(ontologyManager.loadOntology(ADVISED_ASPECT_ONTO_IRI));
 
-            System.out.println(ontologyManagerAspect.loadOntology(ADVISED_ASPECT_ONTO_IRI));
 
 
 
-
-        /*
-            OWLOntology ontology = ontologyManagerAspect.loadOntology(ADVISED_ASPECT_ONTO_IRI);
+            OWLOntology ontology = ontologyManagerAspect.loadOntology(ASPECT_EXAMPLE_ONTO_IRI);
 
             System.out.println("NUMBER ONTOLOGIES ::: " + ontologyManagerAspect.getOntologies().size());
 
             for (OWLAspectAssertionAxiom aspect : EnititySearcherAspect.getAspectAssertionAxioms
                                                     (new JoinPoint(IRI.create("http://csw.inf.fu-berlin.de/aood/example#Country")), ontology)){
 
-                System.out.println(aspect.getJoinPoint().get());
+                System.out.println("########################## :::  " +  aspect.getJoinPoint().get());
 
-            };*/
+            };
 
         } catch (Exception e){   // TODO
             e.printStackTrace();
