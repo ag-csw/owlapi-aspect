@@ -2,8 +2,6 @@ package de.fuberlin.csw.aspect_owlapi;
 
 import de.fuberlin.csw.aspect_owlapi.util.NotAnAspectAnnotationError;
 import org.semanticweb.owlapi.model.OWLAnnotation;
-import org.semanticweb.owlapi.model.OWLAnnotationValue;
-import org.semanticweb.owlapi.model.OWLDataFactory;
 import uk.ac.manchester.cs.owl.owlapi.OWLAnnotationImpl;
 
 import javax.annotation.Nonnull;

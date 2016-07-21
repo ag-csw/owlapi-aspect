@@ -33,7 +33,7 @@ public class TestAspectApi {
     public static final File ADVISED_ASPECT_ONTO_FILE = new File(testfolder + "aspectOWL.owl");
 
     @Nonnull
-    public static final IRI CONTEXT_SLICES_IRI = IRI.create("http://example.org/ContextSlices");
+    public static final IRI CONTEXT_SLICES_IRI = IRI.create("http://testfolderexample.org/ContextSlices");
 
     @Nonnull
     public static final File CONTEXT_SLICES_FILE = new File(testfolder + "contextSlices.owl");
@@ -49,36 +49,53 @@ public class TestAspectApi {
     public void testWaeaving(){
 
 
-        OWLOntologyManagerAspect ontologyManager = OWLManagerAspect.createOWLOntologyManager();
-        //OWLDataFactoryAspect dataFactoryAspect = ontologyManager.getOWLDataFactory();
-
-        /*
+        OWLOntologyManagerAspect ontologyManagerAspect = OWLManagerAspect.createOWLOntologyManager();
+        //OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
 
 
-        ontologyManager.getIRIMappers().add(new SimpleIRIMapper(ADVISED_ASPECT_ONTO_IRI, IRI.create(ADVISED_ASPECT_ONTO_FILE)));
-        ontologyManager.getIRIMappers().add(new SimpleIRIMapper(ASPECT_EXAMPLE_ONTO_IRI, IRI.create(ASPECT_EXAMPLE_ONTO_FILE)));
-        ontologyManager.getIRIMappers().add(new SimpleIRIMapper(CONTEXT_SLICES_IRI, IRI.create(CONTEXT_SLICES_FILE)));
+        //OWLDataFactoryAspect dataFactoryAspect = ontologyManagerAspect.getOWLDataFactory();
+
+
+
+        ontologyManagerAspect.getIRIMappers().add(new SimpleIRIMapper(ADVISED_ASPECT_ONTO_IRI, IRI.create(ADVISED_ASPECT_ONTO_FILE)));
+        //ontologyManager.getIRIMappers().add(new SimpleIRIMapper(ADVISED_ASPECT_ONTO_IRI, IRI.create(ADVISED_ASPECT_ONTO_FILE)));
+
+        System.out.println(ontologyManagerAspect.getIRIMappers().size());
+        //System.out.println(ontologyManager.getIRIMappers().size());
+
+        System.out.println(ontologyManagerAspect.contains(ADVISED_ASPECT_ONTO_IRI));
+        //System.out.println(ontologyManager.contains(ADVISED_ASPECT_ONTO_IRI));
 
 
 
         try {
+            System.out.println("TRY : ");
+
+            //System.out.println(ontologyManager.loadOntology(ADVISED_ASPECT_ONTO_IRI));
+
+            System.out.println(ontologyManagerAspect.loadOntology(ADVISED_ASPECT_ONTO_IRI));
 
 
-            OWLOntology ontology = ontologyManager.loadOntology(ASPECT_EXAMPLE_ONTO_IRI);
+
+
+        /*
+            OWLOntology ontology = ontologyManagerAspect.loadOntology(ADVISED_ASPECT_ONTO_IRI);
+
+            System.out.println("NUMBER ONTOLOGIES ::: " + ontologyManagerAspect.getOntologies().size());
 
             for (OWLAspectAssertionAxiom aspect : EnititySearcherAspect.getAspectAssertionAxioms
                                                     (new JoinPoint(IRI.create("http://csw.inf.fu-berlin.de/aood/example#Country")), ontology)){
 
                 System.out.println(aspect.getJoinPoint().get());
 
-            };
+            };*/
 
         } catch (Exception e){   // TODO
             e.printStackTrace();
         }
 
 
-*/
+
 
 
     }

@@ -47,6 +47,10 @@ public class OWLAPIImplModuleAspect extends AbstractModule {
                 .to(OWLDataFactoryAspectImpl.class)
                 .asEagerSingleton();
 
+        bind(OWLDataFactory.class)
+                .to(OWLDataFactoryImpl.class)
+                .asEagerSingleton();
+
         bind(OWLDataFactoryInternals.class)
                 .to(OWLDataFactoryInternalsImpl.class);
 
@@ -57,6 +61,10 @@ public class OWLAPIImplModuleAspect extends AbstractModule {
         bind(OWLOntologyManager.class)
                 .annotatedWith(NonConcurrentDelegate.class)
                 .to(OWLOntologyManagerImpl.class)
+                .asEagerSingleton();
+
+        bind(OWLOntologyManagerAspect.class)
+                .to(OWLOntologyManagerAspectImpl.class)
                 .asEagerSingleton();
 
         bind(OWLOntologyManagerAspect.class)
