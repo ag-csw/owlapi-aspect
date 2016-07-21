@@ -6,12 +6,15 @@ package de.fuberlin.csw.aspect_owlapi;
 import javax.annotation.Nonnull;
 
 import com.google.inject.assistedinject.FactoryModuleBuilder;
+import com.google.inject.Singleton;
+
 import org.semanticweb.owlapi.annotations.OwlapiModule;
 import org.semanticweb.owlapi.model.*;
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
 import uk.ac.manchester.cs.owl.owlapi.*;
 import uk.ac.manchester.cs.owl.owlapi.concurrent.*;
+
 
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -39,6 +42,12 @@ public class OWLAPIImplModuleAspect extends AbstractModule {
                     .asEagerSingleton();
         }
 
+
+        bind(OWLOntologyManagerAspectImpl.class).in(Singleton.class);
+
+        bind(OWLDataFactoryAspectImpl.class).in(Singleton.class);
+
+
         bind(boolean.class)
                 .annotatedWith(CompressionEnabled.class)
                 .toInstance(false);
@@ -48,19 +57,19 @@ public class OWLAPIImplModuleAspect extends AbstractModule {
                 .asEagerSingleton();
 
         bind(OWLDataFactory.class)
-                .to(OWLDataFactoryImpl.class)
+                .to(OWLDataFactoryAspectImpl.class)
                 .asEagerSingleton();
 
         bind(OWLDataFactoryInternals.class)
                 .to(OWLDataFactoryInternalsImpl.class);
 
         bind(OWLOntologyManager.class)
-                .to(OWLOntologyManagerImpl.class)
+                .to(OWLOntologyManagerAspectImpl.class)
                 .asEagerSingleton();
 
         bind(OWLOntologyManager.class)
                 .annotatedWith(NonConcurrentDelegate.class)
-                .to(OWLOntologyManagerImpl.class)
+                .to(OWLOntologyManagerAspectImpl.class)
                 .asEagerSingleton();
 
         bind(OWLOntologyManagerAspect.class)
@@ -84,6 +93,9 @@ public class OWLAPIImplModuleAspect extends AbstractModule {
                 .build(OWLOntologyImplementationFactory.class));
 
         multibind(OWLOntologyFactory.class, OWLOntologyFactoryImpl.class);
+
+
+
 
 
     }
