@@ -7,14 +7,14 @@ import org.semanticweb.owlapi.model.OWLAnnotationSubject;
  */
 public class JoinPoint {
 
-    OWLAnnotationSubject subject;
+    OWLAnnotationSubject joinPointRepresentation;
 
     public JoinPoint(OWLAnnotationSubject subject){
-        this.subject = subject;
+        this.joinPointRepresentation = subject;
     }
 
     public OWLAnnotationSubject get(){
-        return this.subject;
+        return this.joinPointRepresentation;
     }
 
 

@@ -5,11 +5,7 @@ import com.google.inject.Injector;
 import org.semanticweb.owlapi.OWLAPIParsersModule;
 import org.semanticweb.owlapi.OWLAPIServiceLoaderModule;
 import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.OWLDataFactory;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
-import org.semanticweb.owlapi.model.OWLOntologyManagerFactory;
 import org.semanticweb.owlapi.util.mansyntax.ManchesterOWLSyntaxParser;
-import uk.ac.manchester.cs.owl.owlapi.OWLAPIImplModule;
 import uk.ac.manchester.cs.owl.owlapi.concurrent.Concurrency;
 
 import javax.annotation.Nonnull;
@@ -19,13 +15,13 @@ import static org.semanticweb.owlapi.util.OWLAPIPreconditions.verifyNotNull;
 /**
  * Created by lars on 09.05.16.
  */
-public class OWLManagerAspect extends OWLManager {
+public class OWLManagerA extends OWLManager {
 
     private static final long serialVersionUID = 40000L;
 
 
     @Override
-    public OWLOntologyManagerAspect get() {
+    public OWLOntologyManagerA get() {
         return createOWLOntologyManager();
     }
 
@@ -36,7 +32,7 @@ public class OWLManagerAspect extends OWLManager {
      * @return The new manager.
      */
     @Nonnull
-    public static OWLOntologyManagerAspect createOWLOntologyManager() {
+    public static OWLOntologyManagerA createOWLOntologyManager() {
         return instatiateOWLOntologyManager(Concurrency.NON_CONCURRENT);
     }
 
@@ -46,7 +42,7 @@ public class OWLManagerAspect extends OWLManager {
      * @return The new manager.
      */
     @Nonnull
-    public static OWLOntologyManagerAspect createConcurrentOWLOntologyManager() {
+    public static OWLOntologyManagerA createConcurrentOWLOntologyManager() {
         return instatiateOWLOntologyManager(Concurrency.CONCURRENT);
     }
 
@@ -57,8 +53,8 @@ public class OWLManagerAspect extends OWLManager {
      * @return An OWLDataFactory that can be used for creating OWL API objects.
      */
     @Nonnull
-    public static OWLDataFactoryAspect getOWLDataFactoryAspect() {
-        return verifyNotNull(createInjector(Concurrency.NON_CONCURRENT).getInstance(OWLDataFactoryAspect.class));
+    public static OWLDataFactoryA getOWLDataFactoryAspect() {
+        return verifyNotNull(createInjector(Concurrency.NON_CONCURRENT).getInstance(OWLDataFactoryA.class));
     }
 
     /**
@@ -70,15 +66,15 @@ public class OWLManagerAspect extends OWLManager {
 
     private static Injector createInjector(Concurrency concurrency) {
         return Guice.createInjector(
-                new OWLAPIImplModuleAspect(concurrency),
+                new OWLAPIImplModuleA(concurrency),
                 new OWLAPIParsersModule(),
                 new OWLAPIServiceLoaderModule());
     }
 
 
-    private static OWLOntologyManagerAspect instatiateOWLOntologyManager(Concurrency concurrency) {
+    private static OWLOntologyManagerA instatiateOWLOntologyManager(Concurrency concurrency) {
         Injector injector = createInjector(concurrency);
-        OWLOntologyManagerAspect instance = injector.getInstance(OWLOntologyManagerAspect.class);
+        OWLOntologyManagerA instance = injector.getInstance(OWLOntologyManagerA.class);
         injector.injectMembers(instance);
         return verifyNotNull(instance);
     }

@@ -20,11 +20,11 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 @OwlapiModule
-public class OWLAPIImplModuleAspect extends AbstractModule {
+public class OWLAPIImplModuleA extends AbstractModule {
 
     private final Concurrency concurrency;
 
-    public OWLAPIImplModuleAspect(Concurrency concurrency) {
+    public OWLAPIImplModuleA(Concurrency concurrency) {
         this.concurrency = concurrency;
     }
 
@@ -43,42 +43,42 @@ public class OWLAPIImplModuleAspect extends AbstractModule {
         }
 
 
-        bind(OWLOntologyManagerAspectImpl.class).in(Singleton.class);
+        bind(OWLOntologyManagerAImpl.class).in(Singleton.class);
 
-        bind(OWLDataFactoryAspectImpl.class).in(Singleton.class);
+        bind(OWLDataFactoryAImpl.class).in(Singleton.class);
 
 
         bind(boolean.class)
                 .annotatedWith(CompressionEnabled.class)
                 .toInstance(false);
 
-        bind(OWLDataFactoryAspect.class)
-                .to(OWLDataFactoryAspectImpl.class)
+        bind(OWLDataFactoryA.class)
+                .to(OWLDataFactoryAImpl.class)
                 .asEagerSingleton();
 
         bind(OWLDataFactory.class)
-                .to(OWLDataFactoryAspectImpl.class)
+                .to(OWLDataFactoryAImpl.class)
                 .asEagerSingleton();
 
         bind(OWLDataFactoryInternals.class)
                 .to(OWLDataFactoryInternalsImpl.class);
 
         bind(OWLOntologyManager.class)
-                .to(OWLOntologyManagerAspectImpl.class)
+                .to(OWLOntologyManagerAImpl.class)
                 .asEagerSingleton();
 
         bind(OWLOntologyManager.class)
                 .annotatedWith(NonConcurrentDelegate.class)
-                .to(OWLOntologyManagerAspectImpl.class)
+                .to(OWLOntologyManagerAImpl.class)
                 .asEagerSingleton();
 
-        bind(OWLOntologyManagerAspect.class)
-                .to(OWLOntologyManagerAspectImpl.class)
+        bind(OWLOntologyManagerA.class)
+                .to(OWLOntologyManagerAImpl.class)
                 .asEagerSingleton();
 
-        bind(OWLOntologyManagerAspect.class)
+        bind(OWLOntologyManagerA.class)
                 .annotatedWith(NonConcurrentDelegate.class)
-                .to(OWLOntologyManagerAspectImpl.class)
+                .to(OWLOntologyManagerAImpl.class)
                 .asEagerSingleton();
 
         bind(OWLOntologyBuilder.class)

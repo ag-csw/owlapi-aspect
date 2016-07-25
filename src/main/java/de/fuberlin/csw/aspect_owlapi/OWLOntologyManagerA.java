@@ -5,8 +5,8 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 /**
  * Created by lars on 12.05.16.
  */
-public interface OWLOntologyManagerAspect extends OWLOntologyManager {
+public interface OWLOntologyManagerA extends OWLOntologyManager {
 
-    public OWLDataFactoryAspect getOWLDataFactory();
+    public OWLDataFactoryA getOWLDataFactory();
 
 }

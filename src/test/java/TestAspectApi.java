@@ -1,16 +1,11 @@
 import de.fuberlin.csw.aspect_owlapi.*;
 import org.junit.Test;
-import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.util.SimpleIRIMapper;
 
 import javax.annotation.Nonnull;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.util.Set;
 
 /**
  * Created by lars on 12.05.16.
@@ -49,10 +44,10 @@ public class TestAspectApi {
     public void testWaeaving(){
 
 
-        OWLOntologyManagerAspect ontologyManagerAspect = OWLManagerAspect.createOWLOntologyManager();
+        OWLOntologyManagerA ontologyManagerAspect = OWLManagerA.createOWLOntologyManager();
 
 
-        OWLDataFactoryAspect dataFactoryAspect = ontologyManagerAspect.getOWLDataFactory();
+        OWLDataFactoryA dataFactoryAspect = ontologyManagerAspect.getOWLDataFactory();
 
 
 
@@ -76,8 +71,8 @@ public class TestAspectApi {
 
             System.out.println("NUMBER ONTOLOGIES ::: " + ontologyManagerAspect.getOntologies().size());
 
-            for (OWLAspectAssertionAxiom aspect : EnititySearcherAspect.getAspectAssertionAxioms
-                                                    (new JoinPoint(IRI.create("http://csw.inf.fu-berlin.de/aood/example#Country")), ontology)){
+            for (OWLAspectAssertionAxiom aspect : EnititySearcherA.getAspectAssertionAxioms
+                    (new JoinPoint(IRI.create("http://csw.inf.fu-berlin.de/aood/example#Country")), ontology)){
 
                 System.out.println("########################## :::  " +  aspect.getJoinPoint().get());
 

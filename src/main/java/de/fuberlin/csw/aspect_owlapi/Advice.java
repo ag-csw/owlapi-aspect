@@ -11,12 +11,9 @@ public class Advice {
 
     private IRI addviceClassIRI;
 
-
-    // should only be used via Data Factory
-    public Advice(IRI adviceClassIRI){
+    protected Advice(IRI adviceClassIRI){
         this.addviceClassIRI = adviceClassIRI;
     }
-
 
     public IRI get(){
         return this.addviceClassIRI;

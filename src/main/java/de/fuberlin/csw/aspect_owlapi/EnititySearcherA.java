@@ -9,11 +9,10 @@ import java.util.HashSet;
 /**
  * Created by lars on 02.05.16.
  */
-public class EnititySearcherAspect extends EntitySearcher {
+public class EnititySearcherA extends EntitySearcher {
 
 
 
-    // ToDo   Join Point als Interface
     public static Collection<OWLAspectAssertionAxiom> getAspectAssertionAxioms(JoinPoint e, OWLOntology ontology){
 
         Collection<OWLAnnotationAssertionAxiom> AnnotationSet = getAnnotationAssertionAxioms(e.get(), ontology);
