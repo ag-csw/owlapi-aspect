@@ -30,7 +30,14 @@ Aspect someAspect = dataFactoryA.getAspect(someAdvice):
 
 ### create arbitrary axioms with aspects
 
-OWLAxiom = dataFactoryA.get<some>Axiom(axiomParameters..., someAnnotations, someAspects);
+OWLAxiom = dataFactoryA.get-some-Axiom(axiomParameters..., someAnnotations, someAspects);
 
+### EntitySearcher
 
+EntitySearcherA.getAspectAssertionAxioms(someJoinPoint, someOntology);
 
+EntitySearcherA.getAspectAssertionAxiom(someOWLEntity, someOntology);
+
+EntitySearcherA.getAspects(someJoinPoint, someOntology);
+
+EntitySearcherA.getAspects(someOWLEntity, someOntology);
