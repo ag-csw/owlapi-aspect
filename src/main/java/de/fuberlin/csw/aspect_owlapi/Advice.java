@@ -9,14 +9,14 @@ import org.semanticweb.owlapi.model.IRI;
  */
 public class Advice {
 
-    private IRI addviceClassIRI;
+    private OWLClass addviceClass;
 
-    protected Advice(IRI adviceClassIRI){
-        this.addviceClassIRI = adviceClassIRI;
+    public Advice(OWLClass adviceClass){
+        this.addviceClass = adviceClass;
     }
 
-    public IRI get(){
-        return this.addviceClassIRI;
+    public OWLClass get(){
+        return this.addviceClass;
     }
 
 }

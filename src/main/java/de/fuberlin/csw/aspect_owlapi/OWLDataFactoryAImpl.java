@@ -29,12 +29,12 @@ public class OWLDataFactoryAImpl extends OWLDataFactoryImpl implements OWLDataFa
 
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(JoinPoint joinPoint, Advice advice){
-        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(HasAspect.getInstance(), joinPoint.get(), advice.get()))  ;
+        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(HasAspect.getInstance(), joinPoint.get().getIRI(), advice.get().getIRI()))  ;
     }
 
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(JoinPoint joinPoint, Advice advice, java.util.Set<? extends OWLAnnotation> annotations){
-        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(HasAspect.getInstance(), joinPoint.get(), advice.get(), annotations))  ;
+        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(HasAspect.getInstance(), joinPoint.get().getIRI(), advice.get().getIRI(), annotations))  ;
     }
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(@Nonnull JoinPoint joinPoint, @Nonnull Advice advice, @Nonnull Set<? extends OWLAnnotation> annotations, @Nonnull Set<Aspect> aspects) {
@@ -47,12 +47,12 @@ public class OWLDataFactoryAImpl extends OWLDataFactoryImpl implements OWLDataFa
 
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(JoinPoint joinPoint, Aspect aspect){
-        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(joinPoint.get(), aspect))  ;
+        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(joinPoint.get().getIRI(), aspect))  ;
     }
 
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(JoinPoint joinPoint, Aspect aspect, java.util.Set<? extends OWLAnnotation> annotations){
-        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(joinPoint.get(), aspect, annotations))  ;
+        return new OWLAspectAssertionAxiom(getOWLAnnotationAssertionAxiom(joinPoint.get().getIRI(), aspect, annotations))  ;
     }
 
     public OWLAspectAssertionAxiom getAspectAssertionAxiom(@Nonnull JoinPoint joinPoint, @Nonnull Aspect aspect, @Nonnull Set<? extends OWLAnnotation> annotations, @Nonnull Set<Aspect> aspects) {
@@ -83,11 +83,11 @@ public class OWLDataFactoryAImpl extends OWLDataFactoryImpl implements OWLDataFa
 
 
     public Advice getAdvice(OWLClass adviceClass){
-        return new Advice(adviceClass.getIRI());
+        return new Advice(adviceClass);
     }
 
 
-    public JoinPoint getJoinPoint(OWLAnnotationSubject subject){
+    public JoinPoint getJoinPoint(OWLEntity subject){
         return new JoinPoint(subject);
     }
 

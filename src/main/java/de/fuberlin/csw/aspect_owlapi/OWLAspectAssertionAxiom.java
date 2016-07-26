@@ -1,10 +1,7 @@
 package de.fuberlin.csw.aspect_owlapi;
 
 import de.fuberlin.csw.aspect_owlapi.util.NotAnAspectAnnotationError;
-import org.semanticweb.owlapi.model.OWLAnnotation;
-import org.semanticweb.owlapi.model.OWLAnnotationAssertionAxiom;
-import org.semanticweb.owlapi.model.OWLAnnotationValue;
-import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.*;
 import uk.ac.manchester.cs.owl.owlapi.OWLAnnotationAssertionAxiomImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataFactoryImpl;
 
@@ -14,14 +11,16 @@ import java.util.Collection;
 /**
  * Created by lars on 02.05.16.
  */
-public class OWLAspectAssertionAxiom extends OWLAnnotationAssertionAxiomImpl  {
+public final class OWLAspectAssertionAxiom extends OWLAnnotationAssertionAxiomImpl  {
 
-    OWLAnnotationAssertionAxiom axiomRepresentation;
-
+    JoinPoint joinPoint;
+    Advice advice;
 
     OWLAspectAssertionAxiom(@Nonnull JoinPoint joinPoint, @Nonnull Advice advice,
                             @Nonnull Collection< ?extends OWLAnnotation> annotations){
-        super(joinPoint.get(), HasAspect.getInstance(), advice.get(), annotations);
+        super(joinPoint.get().getIRI(), HasAspect.getInstance(), advice.get().getIRI(), annotations);
+        this.joinPoint = joinPoint;
+        this.advice = advice;
     }
 
     OWLAspectAssertionAxiom(OWLAnnotationAssertionAxiom axiomRepresentation){
@@ -32,15 +31,24 @@ public class OWLAspectAssertionAxiom extends OWLAnnotationAssertionAxiomImpl  {
         if(!axiomRepresentation.getProperty().equals(HasAspect.getInstance())){
             throw new NotAnAspectAnnotationError();
         }
+
+        OWLOntologyManagerA ontologyManagerAspect = OWLManagerA.createOWLOntologyManager();
+        OWLDataFactoryA dataFactoryAspect = ontologyManagerAspect.getOWLDataFactory();
+
+        if (axiomRepresentation.getSubject() instanceof IRI  &&   axiomRepresentation.getValue() instanceof IRI){
+            joinPoint = new JoinPoint(dataFactoryAspect.getOWLClass((IRI)axiomRepresentation.getSubject()));
+            advice = new Advice(dataFactoryAspect.getOWLClass((IRI)axiomRepresentation.getValue()));
+        }
+
     }
 
     public JoinPoint getJoinPoint(){
-        return new JoinPoint(this.getSubject());
+        return this.joinPoint;
     }
 
 
     public Advice getAdvice(){
-        return new Advice(axiomRepresentation.getValue().asIRI().get());
+        return this.advice;
     }
 
 

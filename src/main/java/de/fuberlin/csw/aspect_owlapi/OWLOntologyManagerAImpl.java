@@ -62,9 +62,9 @@ public class OWLOntologyManagerAImpl extends OWLOntologyManagerImpl implements O
 
             OWLDataFactory dataFactory = ont.getOWLOntologyManager().getOWLDataFactory();
 
-            IRI classIRI = ((OWLAspectAssertionAxiom) axiom).getAdvice().get();
+            IRI classIRI = ((OWLAspectAssertionAxiom) axiom).getAdvice().get().getIRI();
 
-            OWLEntity entity = dataFactory.getOWLEntity(EntityType.CLASS, IRI.create("#newclass"));
+            OWLEntity entity = dataFactory.getOWLEntity(EntityType.CLASS, classIRI);
 
             OWLAxiom declare = dataFactory.getOWLDeclarationAxiom(entity);
 
@@ -111,9 +111,9 @@ public class OWLOntologyManagerAImpl extends OWLOntologyManagerImpl implements O
 
                 OWLDataFactory dataFactory = ont.getOWLOntologyManager().getOWLDataFactory();
 
-                IRI classIRI = ((OWLAspectAssertionAxiom) axiom).getAdvice().get();
+                IRI classIRI = ((OWLAspectAssertionAxiom) axiom).getAdvice().get().getIRI();
 
-                OWLEntity entity = dataFactory.getOWLEntity(EntityType.CLASS, IRI.create("#newclass"));
+                OWLEntity entity = dataFactory.getOWLEntity(EntityType.CLASS, classIRI);
 
                 OWLAxiom declare = dataFactory.getOWLDeclarationAxiom(entity);
 
