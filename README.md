@@ -24,7 +24,7 @@ Advice someAdvice = new Advice(someOWLClass);
 
 OWLAxiom axiom = dataFactoryA.getAspectAssertionAxiom(someJoinPoint, someAdvice);
 
-#### create an Aspect
+### create an Aspect
 
 Aspect someAspect = dataFactoryA.getAspect(someAdvice):
 
